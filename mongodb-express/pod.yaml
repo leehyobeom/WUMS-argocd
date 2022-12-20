@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb-express
+  labels:
+    app: mongodb-express
+spec:
+  containers:
+  - name: mongodb-express
+    image: mongo-express
+    env:
+    - name: ME_CONFIG_MONGODB_URL
+      value: "mongodb://mongodb:27017"
+    ports:
+    - containerPort: 8081
