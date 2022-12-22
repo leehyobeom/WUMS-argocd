@@ -1,0 +1,77 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elasticsearch-config
+  labels:
+    app: elasticsearch
+data:
+  elasticsearch.yml: |-
+    cluster.name: "docker-cluster"
+    network.host: 0.0.0.0
+
+    #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
+    #
+    # The following settings, TLS certificates, and keys have been automatically      
+    # generated to configure Elasticsearch security features on 21-12-2022 19:16:46
+    #
+    # --------------------------------------------------------------------------------
+
+    # Enable security features
+    xpack.security.enabled: false
+    xpack.security.enrollment.enabled: false
+
+    # Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+    xpack.security.http.ssl:
+      enabled: false
+    # keystore.path: certs/http.p12
+
+    # Enable encryption and mutual authentication between cluster nodes
+    xpack.security.transport.ssl:
+      enabled: false
+    # verification_mode: certificate
+    # keystore.path: certs/transport.p12
+    # truststore.path: certs/transport.p12
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+    - name: port9200
+      port: 9200
+      targetPort: 9200
+    - name: port9300
+      port: 9300
+      targetPort: 9300
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  containers:
+  - name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+    env:
+    - name: discovery.type
+      value: "single-node"
+    ports:
+    - name: port9200
+      containerPort: 9200
+    - name: port9300
+      containerPort: 9300
+    volumeMounts:
+    - name: config
+      mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+      readOnly: true
+      subPath: elasticsearch.yml
+  volumes:
+  - name: config
+    configMap:
+      name: elasticsearch-config

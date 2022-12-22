@@ -8,6 +8,5 @@ spec:
   containers:
   - name: kafka-zookeeper
     image: wurstmeister/zookeeper:latest
-    env:
     ports:
     - containerPort: 2181

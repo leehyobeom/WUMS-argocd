@@ -1,0 +1,74 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+spec:
+  selector:
+    app: logstash
+  ports:
+    - port: 5044
+      targetPort: 5044
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-config
+  labels:
+    app: logstash
+data:
+  logstash.conf: |-
+    input {
+      beats {
+        port => 5044
+      }
+    }
+    output {
+      elasticsearch {
+        hosts => ["elasticsearch:9200"]
+        index => "classes" 
+      }
+    }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: logstash
+  labels:
+    app: logstash
+spec:
+  containers:
+  - name: logstash
+    image: docker.elastic.co/logstash/logstash:8.5.3
+    env:
+    - name: XPACK_MONITORING_ENABLED
+      value: "false"
+    volumeMounts:
+    - name: config
+      mountPath: /usr/share/logstash/pipeline/logstash.conf
+      readOnly: true
+      subPath: logstash.conf
+    - name: varlog
+      mountPath: /var/log
+      readOnly: true
+  volumes:
+  - name: config
+    configMap:
+      name: logstash-config
+  - name: varlog
+    hostPath:
+      path: /var/log
+
+
+
+    # input {
+    #   beats {
+    #     port => 5044
+    #   }
+    # }
+    # output {
+    #   elasticsearch {
+    #     hosts => ["elasticsearch:9200"]
+    #     index => "access-log" 
+    #   }
+    # }

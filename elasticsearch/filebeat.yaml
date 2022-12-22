@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-config
+  labels:
+    app: filebeat
+data:
+  filebeat.yml: |-
+    filebeat.inputs:
+    - type: filestream
+      enabled: true
+      id: tmp
+      paths:
+        - /usr/share/filebeat/logs/*.log
+    output.logstash:
+      hosts: ['logstash:5044']
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: filebeat
+  labels:
+    app: filebeat
+spec:
+  containers:
+  - name: filebeat
+    image: docker.elastic.co/beats/filebeat:8.5.3
+    args: [
+          "-c", "/etc/filebeat.yml",
+          "-e",
+        ]
+    volumeMounts:
+    - name: config
+      mountPath: /etc/filebeat.yml
+      readOnly: true
+      subPath: filebeat.yml
+    - name: varlog
+      mountPath: /var/log
+      readOnly: true
+  volumes:
+  - name: config
+    configMap:
+      name: filebeat-config
+  - name: varlog
+    hostPath:
+      path: /var/log
