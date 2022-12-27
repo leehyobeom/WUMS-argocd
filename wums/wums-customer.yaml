@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wums-admin
+spec:
+  selector:
+    app: wums-admin
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30005
+  type: NodePort
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wums-customer
+  labels:
+    app: wums-customer
+spec:
+  containers:
+  - name: wums-customer
+    image: wums-customer
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 8080

@@ -1,3 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wums-loop
+spec:
+  selector:
+    app: wums-loop
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30002
+  type: NodePort
+---
 apiVersion: v1
 kind: Pod
 metadata:
