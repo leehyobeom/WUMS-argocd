@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wums-admin
+  name: wums-customer
 spec:
   selector:
-    app: wums-admin
+    app: wums-customer
   ports:
-    - port: 8080
+    - port: 8082
       targetPort: 8080
       nodePort: 30005
   type: NodePort
