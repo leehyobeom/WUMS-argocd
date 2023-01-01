@@ -25,3 +25,10 @@ spec:
     imagePullPolicy: Never
     ports:
     - containerPort: 3000
+    volumeMounts:
+    - name: wums-gql-logs
+      mountPath: /app/dist/logs
+  volumes:
+  - name: wums-gql-logs
+    hostPath:
+      path: /var/log/wums-gql

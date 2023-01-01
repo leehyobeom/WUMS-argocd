@@ -12,7 +12,8 @@ data:
       enabled: true
       id: tmp
       paths:
-        - /usr/share/filebeat/logs/*.log
+        - /var/log/wums*/*.log
+        - /var/log/wums*/error/*.log
     output.logstash:
       hosts: ['logstash:5044']
 ---
@@ -37,7 +38,6 @@ spec:
       subPath: filebeat.yml
     - name: varlog
       mountPath: /var/log
-      readOnly: true
   volumes:
   - name: config
     configMap:

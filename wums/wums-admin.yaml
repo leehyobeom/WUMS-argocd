@@ -7,7 +7,7 @@ spec:
   selector:
     app: wums-admin
   ports:
-    - port: 8080
+    - port: 8083
       targetPort: 8080
       nodePort: 30011
   type: NodePort
