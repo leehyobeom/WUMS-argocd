@@ -1,0 +1,84 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wums-alb-public
+  annotations:
+    alb.ingress.kubernetes.io/rewrite-target: /
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/subnets: "wums-subnet-public1-ap-northeast-2a, wums-subnet-public2-ap-northeast-2b"
+  labels:
+    app: wums-alb-public
+spec:
+  ingressClassName: alb
+  rules:
+    - host: mongodb.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mongodb-express
+                port:
+                  number: 8081
+    - host: kafka.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kafka-ui
+                port:
+                  number: 8080
+    - host: elk.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana
+                port:
+                  number: 5601
+    - host: admin.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wums-admin
+                port:
+                  number: 8083
+    - host: customer.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wums-customer
+                port:
+                  number: 8082
+    - host: gql.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wums-gql
+                port:
+                  number: 3001
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mongodb-express
+                port:
+                  number: 8081
