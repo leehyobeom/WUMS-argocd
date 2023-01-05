@@ -21,7 +21,7 @@ metadata:
 spec:
   containers:
   - name: wums-customer
-    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-customer:1.3.0
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-customer:1.4.0
     ports:
     - containerPort: 8080
   imagePullSecrets:
