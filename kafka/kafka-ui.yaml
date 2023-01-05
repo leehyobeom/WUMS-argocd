@@ -22,6 +22,11 @@ spec:
   containers:
   - name: kafka-ui
     image: provectuslabs/kafka-ui
+    resources:
+      requests:
+        memory: "50Mi"
+      limits:
+        memory: "100Mi"
     env:
     - name: KAFKA_CLUSTERS_0_NAME
       value: "local"

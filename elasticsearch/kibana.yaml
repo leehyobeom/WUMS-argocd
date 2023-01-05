@@ -22,5 +22,10 @@ spec:
   containers:
   - name: kibana
     image: docker.elastic.co/kibana/kibana:8.5.3
+    resources:
+      requests:
+        memory: "50Mi"
+      limits:
+        memory: "100Mi"
     ports:
     - containerPort: 5601

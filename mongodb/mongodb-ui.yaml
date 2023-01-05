@@ -22,6 +22,11 @@ spec:
   containers:
   - name: mongodb-express
     image: mongo-express
+    resources:
+      requests:
+        memory: "50Mi"
+      limits:
+        memory: "100Mi"
     env:
     - name: ME_CONFIG_MONGODB_URL
       value: "mongodb://mongodb:27017"
