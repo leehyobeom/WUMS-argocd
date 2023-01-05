@@ -30,7 +30,6 @@ spec:
   volumes:
   - name: wums-gql-logs
     hostPath:
-      path: /var/wums-gql
-      type: DirectoryOrCreate
+      path: /var/log/wums-gql
   imagePullSecrets:
   - name: regcred
