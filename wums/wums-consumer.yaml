@@ -7,12 +7,10 @@ metadata:
 spec:
   containers:
   - name: wums-consumer
-    image: wums-consumer
-    imagePullPolicy: Never
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-consumer:latest
     ports:
     - containerPort: 3000
   - name: wums-driver
-    image: wums-driver
-    imagePullPolicy: Never
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-driver:latest
     ports:
     - containerPort: 5000

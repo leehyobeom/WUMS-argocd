@@ -21,7 +21,6 @@ metadata:
 spec:
   containers:
   - name: wums-producer
-    image: wums-producer
-    imagePullPolicy: Never
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-producer:latest
     ports:
     - containerPort: 3000
