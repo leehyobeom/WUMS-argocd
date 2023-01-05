@@ -20,11 +20,6 @@ spec:
   containers:
   - name: kafka
     image: wurstmeister/kafka:latest
-    resources:
-      requests:
-        memory: "50Mi"
-      limits:
-        memory: "100Mi"
     env:
     - name: KAFKA_ADVERTISED_HOST_NAME
       value: "kafka"

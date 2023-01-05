@@ -22,11 +22,6 @@ spec:
   containers:
   - name: wums-customer
     image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-customer:1.4.0
-    resources:
-      requests:
-        memory: "50Mi"
-      limits:
-        memory: "100Mi"
     ports:
     - containerPort: 8080
   imagePullSecrets:

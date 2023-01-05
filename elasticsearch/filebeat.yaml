@@ -27,11 +27,6 @@ spec:
   containers:
   - name: filebeat
     image: docker.elastic.co/beats/filebeat:8.5.3
-    resources:
-      requests:
-        memory: "50Mi"
-      limits:
-        memory: "100Mi"
     args: [
           "-c", "/etc/filebeat.yml",
           "-e",

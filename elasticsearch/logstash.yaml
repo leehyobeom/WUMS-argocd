@@ -40,11 +40,6 @@ spec:
   containers:
   - name: logstash
     image: docker.elastic.co/logstash/logstash:8.5.3
-    resources:
-      requests:
-        memory: "50Mi"
-      limits:
-        memory: "100Mi"
     env:
     - name: XPACK_MONITORING_ENABLED
       value: "false"
