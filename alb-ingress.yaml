@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
   name: headless-to-argocd
-  namespace: argocd
 spec:
   clusterIP: None
   externalName: argocd-server.argocd.svc.cluster.local
