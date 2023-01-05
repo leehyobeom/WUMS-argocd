@@ -66,13 +66,23 @@ spec:
     - host: gql.wums.link
       http:
         paths:
-          - path: /graphql
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: wums-gql
                 port:
                   number: 3001
+    - host: producer.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wums-producer
+                port:
+                  number: 3000
     - http:
         paths:
           - path: /
