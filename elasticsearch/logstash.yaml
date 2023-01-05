@@ -36,6 +36,7 @@ metadata:
   name: logstash
   labels:
     app: logstash
+    sidecar.istio.io/inject: "false"
 spec:
   containers:
   - name: logstash

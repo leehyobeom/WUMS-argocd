@@ -17,6 +17,7 @@ kind: Pod
 metadata:
   name: kibana
   labels:
+    sidecar.istio.io/inject: "false"
     app: kibana
 spec:
   containers:

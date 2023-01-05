@@ -22,6 +22,7 @@ kind: Pod
 metadata:
   name: filebeat
   labels:
+    sidecar.istio.io/inject: "false"
     app: filebeat
 spec:
   containers:

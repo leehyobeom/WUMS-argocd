@@ -54,6 +54,7 @@ metadata:
   name: elasticsearch
   labels:
     app: elasticsearch
+    sidecar.istio.io/inject: "false"
 spec:
   containers:
   - name: elasticsearch
