@@ -83,6 +83,16 @@ spec:
                 name: wums-producer
                 port:
                   number: 3000
+    - host: argocd.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
     - http:
         paths:
           - path: /
