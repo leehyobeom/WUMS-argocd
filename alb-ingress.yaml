@@ -66,7 +66,7 @@ spec:
     - host: gql.wums.link
       http:
         paths:
-          - path: /
+          - path: /graphql
             pathType: Prefix
             backend:
               service:
