@@ -83,3 +83,30 @@ spec:
                 name: wums-producer
                 port:
                   number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wums-istio
+  namespace: istio-system
+  annotations:
+    alb.ingress.kubernetes.io/rewrite-target: /
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/subnets: "wums-subnet-public1-ap-northeast-2a, wums-subnet-public2-ap-northeast-2b"
+  labels:
+    app: wums-istio
+spec:
+  ingressClassName: alb
+  rules:
+    - host: kiali.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kiali
+                port:
+                  number: 9090
