@@ -21,7 +21,7 @@ metadata:
 spec:
   containers:
   - name: wums-gql
-    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-gql:latest
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-gql:1.6.0
     ports:
     - containerPort: 3000
     volumeMounts:

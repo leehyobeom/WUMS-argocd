@@ -21,7 +21,7 @@ metadata:
 spec:
   containers:
   - name: wums-admin
-    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-admin:latest
+    image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-admin:1.6.0
     # imagePullPolicy: Never
     ports:
     - containerPort: 8080
