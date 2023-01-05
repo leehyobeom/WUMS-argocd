@@ -12,8 +12,8 @@ data:
       enabled: true
       id: tmp
       paths:
-        - /var/log/wums*/*.log
-        - /var/log/wums*/error/*.log
+        - /var/wums*/*.log
+        - /var/wums*/error/*.log
     output.logstash:
       hosts: ['logstash:5044']
 ---
