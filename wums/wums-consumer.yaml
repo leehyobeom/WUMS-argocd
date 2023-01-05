@@ -14,3 +14,5 @@ spec:
     image: 251974498126.dkr.ecr.ap-northeast-2.amazonaws.com/wums-driver:latest
     ports:
     - containerPort: 5000
+  imagePullSecrets:
+  - name: regcred

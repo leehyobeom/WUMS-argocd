@@ -31,3 +31,5 @@ spec:
   - name: wums-gql-logs
     hostPath:
       path: /var/log/wums-gql
+  imagePullSecrets:
+  - name: regcred
