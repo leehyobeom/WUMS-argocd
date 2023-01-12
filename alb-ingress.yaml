@@ -120,3 +120,13 @@ spec:
                 name: grafana
                 port:
                   number: 3000
+    - host: prometheus.wums.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: 9090
